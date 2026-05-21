@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Human Selfie Bingo</title>
+    <title>Ladies' Fellowship Bingo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
 
@@ -48,37 +48,37 @@
             margin-bottom: 12px;
         }
 
-        /* New Event Styles */
+        /* The main grand header style */
         .event-title {
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #7b626e;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .event-date {
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 500;
-            font-size: 0.8rem;
-            color: var(--dark-pink);
-            margin: 2px 0 8px 0;
-        }
-
-        h1 {
             font-family: 'Fredoka', cursive;
             color: var(--dark-pink);
-            font-size: 1.7rem;
+            font-size: 1.9rem;
             margin: 0;
             text-transform: uppercase;
             text-shadow: 1px 1px 0px var(--accent-purple);
         }
 
+        /* Sub-heading game title style */
+        .game-title {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #7b626e;
+            letter-spacing: 0.5px;
+            margin: 4px 0 2px 0;
+        }
+
+        .event-date {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--dark-pink);
+            margin: 0 0 8px 0;
+        }
+
         .subtitle {
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 500;
             color: #7b626e;
             margin: 4px 0 6px 0;
         }
@@ -223,6 +223,7 @@
         }
 
         @media (max-width: 360px) {
+            .event-title { font-size: 1.6rem; }
             .prompt-text { font-size: 0.75rem; }
             .bingo-card { height: 150px; }
             .selfie-btn { height: 38px; padding: 3px 4px; }
@@ -233,10 +234,10 @@
 
 <div class="bingo-container">
     <header>
-        <div class="event-title">Ladies' Fellowship</div>
+        <div class="event-title">🌸 Ladies' Fellowship 🌸</div>
+        <div class="game-title">Human Selfie Bingo</div>
         <div class="event-date">May 22, 2026</div>
         
-        <h1>🌸 Human Selfie Bingo 🌸</h1>
         <div class="subtitle">Type details & take a selfie together!</div>
         
         <div class="player-box">
