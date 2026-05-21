@@ -26,7 +26,7 @@
             color: var(--text-dark);
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Better alignment for mobile keyboards */
+            align-items: flex-start;
             min-height: 100vh;
             box-sizing: border-box;
         }
@@ -40,7 +40,7 @@
             width: 100%;
             box-shadow: 0 8px 20px rgba(255, 101, 163, 0.15);
             box-sizing: border-box;
-            margin-bottom: 20px; /* Leaves breathing room at the bottom */
+            margin-bottom: 20px;
         }
 
         header {
@@ -91,7 +91,6 @@
             text-align: center;
         }
 
-        /* Clean 3x2 grid layout */
         .bingo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -99,7 +98,6 @@
             margin-top: 10px;
         }
 
-        /* Reverted back to the comfortable layout from your screenshot */
         .bingo-card {
             background: #fff;
             border: 2px solid var(--gold);
@@ -112,7 +110,7 @@
             align-items: center;
             position: relative;
             box-sizing: border-box;
-            height: 165px; /* Perfect golden ratio height for mobile screens */
+            height: 165px; 
         }
 
         .badge {
@@ -153,7 +151,6 @@
             background-color: #fff;
         }
 
-        /* Safe, standard touch-target sizing for mobile image uploads */
         .selfie-slot {
             width: 100%;
             max-width: 60px;
@@ -168,12 +165,14 @@
             position: relative;
             overflow: hidden;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Fixes flashing on touch */
         }
 
         .selfie-slot span {
             font-size: 0.65rem;
             color: var(--dark-pink);
             font-weight: 700;
+            pointer-events: none; /* Helps touch register on the button background */
         }
 
         .selfie-slot img {
@@ -202,7 +201,6 @@
             font-size: 0.75rem;
         }
 
-        /* Micro scaling adjustments for older or shorter phones */
         @media (max-width: 360px) {
             .prompt-text { font-size: 0.75rem; }
             .bingo-card { height: 150px; }
@@ -230,7 +228,7 @@
             <input type="text" class="detail-input" placeholder="Name & Pet">
             <label class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
             </label>
         </div>
 
@@ -240,7 +238,7 @@
             <input type="text" class="detail-input" placeholder="Where?">
             <label class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
             </label>
         </div>
 
@@ -250,7 +248,7 @@
             <input type="text" class="detail-input" placeholder="Favorite?">
             <label class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
             </label>
         </div>
 
@@ -260,7 +258,7 @@
             <input type="text" class="detail-input" placeholder="What activity?">
             <label class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
             </label>
         </div>
 
@@ -270,7 +268,7 @@
             <input type="text" class="detail-input" placeholder="What was said?">
             <label class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
             </label>
         </div>
 
@@ -280,7 +278,7 @@
             <input type="text" class="detail-input" placeholder="Where at?">
             <label class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
             </label>
         </div>
     </div>
