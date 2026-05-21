@@ -27,33 +27,34 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             box-sizing: border-box;
-            overflow: hidden;
         }
 
         .bingo-container {
             background: #ffffff;
             border: 5px solid var(--primary-pink);
             border-radius: 20px;
-            padding: 12px 15px;
-            max-width: 480px;
+            padding: 15px;
+            max-width: 450px;
             width: 100%;
-            display: flex;
-            flex-direction: column;
             box-shadow: 0 8px 20px rgba(255, 101, 163, 0.15);
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            max-height: 95vh; /* Prevents stretching past screen boundaries */
         }
 
         header {
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            flex-shrink: 0;
         }
 
         h1 {
             font-family: 'Fredoka', cursive;
             color: var(--dark-pink);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin: 0;
             text-transform: uppercase;
             text-shadow: 1px 1px 0px var(--accent-purple);
@@ -70,14 +71,14 @@
             background: var(--bg-color);
             border: 1.5px dashed var(--dark-pink);
             border-radius: 8px;
-            padding: 2px 10px;
+            padding: 4px 12px;
             display: inline-block;
         }
 
         .player-box label {
             font-weight: 700;
             color: var(--dark-pink);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
 
         .player-box input {
@@ -85,27 +86,34 @@
             background: transparent;
             border-bottom: 2px solid var(--primary-pink);
             font-family: 'Quicksand', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-dark);
             outline: none;
-            width: 110px;
+            width: 120px;
             text-align: center;
         }
 
-        /* 3x2 Grid Setup */
+        /* Smart Grid Container that scrolls if a phone screen is too short */
+        .grid-wrapper {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 2px;
+        }
+
         .bingo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
+            margin-top: 4px;
         }
 
-        /* Shortened Card Layout (Cut in half horizontally) */
+        /* Comfortable, easily tappable box sizing */
         .bingo-card {
             background: #fff;
             border: 2px solid var(--gold);
             border-radius: 12px;
-            padding: 6px;
+            padding: 8px 4px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -113,20 +121,20 @@
             align-items: center;
             position: relative;
             box-sizing: border-box;
-            height: 120px; /* Cut in half from previous 210px+ height */
+            height: 145px; 
         }
 
         .badge {
             background-color: var(--dark-pink);
             color: white;
             border-radius: 50%;
-            width: 15px;
-            height: 15px;
+            width: 16px;
+            height: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Fredoka', cursive;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             position: absolute;
             top: 4px;
             left: 4px;
@@ -135,29 +143,30 @@
         .prompt-text {
             font-weight: 700;
             font-size: 0.75rem;
-            margin-top: 8px;
-            margin-bottom: 2px;
+            margin-top: 10px;
+            margin-bottom: 4px;
             line-height: 1.1;
         }
 
         .detail-input {
-            width: 95%;
+            width: 90%;
             border: 1px solid var(--primary-pink);
             border-radius: 4px;
-            padding: 2px;
+            padding: 3px 2px;
             font-family: 'Quicksand', sans-serif;
             font-size: 0.65rem;
             text-align: center;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             outline: none;
+            box-sizing: border-box;
         }
 
-        /* Mini-sized Selfie Target Button */
+        /* Perfect sized upload area to guarantee phone touch/camera activation */
         .selfie-slot {
-            width: 100%;
-            height: 32px; /* Flattened button layout */
-            border: 1px dashed var(--dark-pink);
-            border-radius: 6px;
+            width: 45px;
+            height: 45px;
+            border: 1.5px dashed var(--dark-pink);
+            border-radius: 8px;
             background-color: var(--bg-color);
             display: flex;
             justify-content: center;
@@ -165,13 +174,10 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            box-sizing: border-box;
         }
 
         .selfie-slot span {
-            font-size: 0.65rem;
-            color: var(--dark-pink);
-            font-weight: 700;
+            font-size: 0.8rem;
         }
 
         .selfie-slot img {
@@ -195,15 +201,9 @@
         .bingo-card.completed::after {
             content: '✨';
             position: absolute;
-            top: 3px;
-            right: 3px;
-            font-size: 0.7rem;
-        }
-
-        /* Fallback adjust if user's display viewport layout is hyper narrow */
-        @media (max-width: 360px) {
-            .prompt-text { font-size: 0.68rem; }
-            .bingo-card { height: 110px; }
+            top: 4px;
+            right: 4px;
+            font-size: 0.75rem;
         }
     </style>
 </head>
@@ -212,7 +212,7 @@
 <div class="bingo-container">
     <header>
         <h1>🌸 Human Selfie Bingo 🌸</h1>
-        <div class="subtitle">Type details & take a selfie together!</div>
+        <div class="subtitle">Fill in details & snap a selfie together!</div>
         
         <div class="player-box">
             <label for="playerName">PLAYER: </label>
@@ -220,65 +220,67 @@
         </div>
     </header>
 
-    <div class="bingo-grid">
-        <div class="bingo-card" id="card-1">
-            <div class="badge">1</div>
-            <div class="prompt-text">Has a pet 🐶</div>
-            <input type="text" class="detail-input" placeholder="Name & Pet">
-            <label class="selfie-slot">
-                <span>📸 ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
+    <div class="grid-wrapper">
+        <div class="bingo-grid">
+            <div class="bingo-card" id="card-1">
+                <div class="badge">1</div>
+                <div class="prompt-text">Has a pet 🐶</div>
+                <input type="text" class="detail-input" placeholder="Name & Pet">
+                <label class="selfie-slot">
+                    <span>📸</span>
+                    <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                </label>
+            </div>
 
-        <div class="bingo-card" id="card-2">
-            <div class="badge">2</div>
-            <div class="prompt-text">Traveled Abroad ✈️</div>
-            <input type="text" class="detail-input" placeholder="Which Country?">
-            <label class="selfie-slot">
-                <span>📸 ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
+            <div class="bingo-card" id="card-2">
+                <div class="badge">2</div>
+                <div class="prompt-text">Traveled Abroad ✈️</div>
+                <input type="text" class="detail-input" placeholder="Where?">
+                <label class="selfie-slot">
+                    <span>📸</span>
+                    <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                </label>
+            </div>
 
-        <div class="bingo-card" id="card-3">
-            <div class="badge">3</div>
-            <div class="prompt-text">K-Dramas 📺</div>
-            <input type="text" class="detail-input" placeholder="Favorite Drama?">
-            <label class="selfie-slot">
-                <span>📸 ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
+            <div class="bingo-card" id="card-3">
+                <div class="badge">3</div>
+                <div class="prompt-text">K-Dramas 📺</div>
+                <input type="text" class="detail-input" placeholder="Favorite?">
+                <label class="selfie-slot">
+                    <span>📸</span>
+                    <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                </label>
+            </div>
 
-        <div class="bingo-card" id="card-4">
-            <div class="badge">4</div>
-            <div class="prompt-text">Likes New Things 🎨</div>
-            <input type="text" class="detail-input" placeholder="What activity?">
-            <label class="selfie-slot">
-                <span>📸 ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
+            <div class="bingo-card" id="card-4">
+                <div class="badge">4</div>
+                <div class="prompt-text">Likes New Things 🎨</div>
+                <input type="text" class="detail-input" placeholder="What activity?">
+                <label class="selfie-slot">
+                    <span>📸</span>
+                    <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                </label>
+            </div>
 
-        <div class="bingo-card" id="card-5">
-            <div class="badge">5</div>
-            <div class="prompt-text">Talks to Self 💭</div>
-            <input type="text" class="detail-input" placeholder="What was said?">
-            <label class="selfie-slot">
-                <span>📸 ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
+            <div class="bingo-card" id="card-5">
+                <div class="badge">5</div>
+                <div class="prompt-text">Talks to Self 💭</div>
+                <input type="text" class="detail-input" placeholder="What was said?">
+                <label class="selfie-slot">
+                    <span>📸</span>
+                    <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                </label>
+            </div>
 
-        <div class="bingo-card" id="card-6">
-            <div class="badge">6</div>
-            <div class="prompt-text">Gotten Lost Before 🗺️</div>
-            <input type="text" class="detail-input" placeholder="Where at?">
-            <label class="selfie-slot">
-                <span>📸 ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
+            <div class="bingo-card" id="card-6">
+                <div class="badge">6</div>
+                <div class="prompt-text">Gotten Lost 🗺️</div>
+                <input type="text" class="detail-input" placeholder="Where at?">
+                <label class="selfie-slot">
+                    <span>📸</span>
+                    <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+                </label>
+            </div>
         </div>
     </div>
 </div>
