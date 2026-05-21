@@ -18,74 +18,78 @@
 
         body {
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             background-color: var(--bg-color);
             background-image: radial-gradient(var(--primary-pink) 1px, transparent 0);
-            background-size: 24px 24px;
+            background-size: 20px 20px;
             font-family: 'Quicksand', sans-serif;
             color: var(--text-dark);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden; /* Prevents page scrolling completely */
         }
 
         .bingo-container {
             background: #ffffff;
-            border: 8px solid var(--primary-pink);
-            border-radius: 30px;
-            padding: 30px;
-            max-width: 700px;
+            border: 6px solid var(--primary-pink);
+            border-radius: 24px;
+            padding: 15px 20px;
+            max-width: 800px;
             width: 100%;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             box-shadow: 0 10px 25px rgba(255, 101, 163, 0.15);
             position: relative;
             box-sizing: border-box;
         }
 
-        /* Decorative flourishes inspired by the design */
         .bingo-container::before, .bingo-container::after {
             content: '🌸';
             position: absolute;
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
-        .bingo-container::before { top: -15px; left: -15px; }
-        .bingo-container::after { bottom: -15px; right: -15px; }
+        .bingo-container::before { top: -12px; left: -12px; }
+        .bingo-container::after { bottom: -12px; right: -12px; }
 
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 12px;
         }
 
         h1 {
             font-family: 'Fredoka', cursive;
             color: var(--dark-pink);
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 0px var(--accent-purple);
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 0px var(--accent-purple);
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #7b626e;
-            margin: 8px 0 15px 0;
+            margin: 4px 0 8px 0;
         }
 
-        /* Player Name Input */
         .player-box {
             background: var(--bg-color);
             border: 2px dashed var(--dark-pink);
-            border-radius: 15px;
-            padding: 10px 15px;
+            border-radius: 12px;
+            padding: 4px 12px;
             display: inline-block;
-            margin-bottom: 20px;
         }
 
         .player-box label {
             font-weight: 700;
             color: var(--dark-pink);
+            font-size: 0.9rem;
         }
 
         .player-box input {
@@ -93,96 +97,81 @@
             background: transparent;
             border-bottom: 2px solid var(--primary-pink);
             font-family: 'Quicksand', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: var(--text-dark);
-            padding: 2px 5px;
+            padding: 2px;
             outline: none;
-            width: 150px;
+            width: 130px;
             text-align: center;
         }
 
-        /* 3x2 Grid Setup */
+        /* 3x2 Grid Optimized for Screen Height */
         .bingo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .bingo-grid {
-                grid-template-columns: 1fr;
-            }
-            h1 { font-size: 2rem; }
+            gap: 12px;
         }
 
         /* Individual Card Item Design */
         .bingo-card {
             background: #fff;
             border: 3px solid var(--gold);
-            border-radius: 20px;
-            padding: 15px;
+            border-radius: 16px;
+            padding: 10px;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s;
             box-sizing: border-box;
-            min-height: 250px;
-            overflow: hidden;
+            height: 210px; /* Reduced fixed height to fit screen */
         }
 
-        .bingo-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(223, 177, 91, 0.3);
-        }
-
-        /* Badge Number */
         .badge {
             background-color: var(--dark-pink);
             color: white;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Fredoka', cursive;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 8px;
+            left: 8px;
         }
 
         .prompt-text {
             font-weight: 700;
-            font-size: 1.05rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            line-height: 1.3;
+            font-size: 0.95rem;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            line-height: 1.2;
         }
 
-        /* Dynamic detail field per card description */
         .detail-input {
             width: 90%;
             border: 1px solid var(--primary-pink);
-            border-radius: 8px;
-            padding: 5px;
+            border-radius: 6px;
+            padding: 4px;
             font-family: 'Quicksand', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             outline: none;
         }
 
-        /* Selfie Target Upload Area */
+        /* Compact Selfie Target Upload Area */
         .selfie-slot {
-            width: 90px;
-            height: 90px;
+            width: 75px;
+            height: 75px;
             border: 2px dashed var(--primary-pink);
-            border-radius: 12px;
+            border-radius: 10px;
             background-color: var(--bg-color);
             display: flex;
             justify-content: center;
@@ -190,19 +179,13 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: background-color 0.2s;
-        }
-
-        .selfie-slot:hover {
-            background-color: #ffe6ee;
         }
 
         .selfie-slot span {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: var(--dark-pink);
             font-weight: 700;
             text-align: center;
-            padding: 5px;
         }
 
         .selfie-slot img {
@@ -214,12 +197,10 @@
             left: 0;
         }
 
-        /* File inputs hidden away nicely */
         .file-input {
             display: none;
         }
 
-        /* Active completed state style */
         .bingo-card.completed {
             background-color: #f7f3ff;
             border-color: var(--dark-pink);
@@ -228,9 +209,17 @@
         .bingo-card.completed::after {
             content: '✨';
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.2rem;
+            top: 6px;
+            right: 6px;
+            font-size: 1rem;
+        }
+
+        /* Responsive scaling for small smartphone layouts */
+        @media (max-width: 650px) {
+            body { overflow: auto; height: auto; }
+            .bingo-container { max-height: none; }
+            .bingo-grid { grid-template-columns: 1fr 1fr; }
+            .bingo-card { height: 190px; }
         }
     </style>
 </head>
@@ -243,101 +232,23 @@
         
         <div class="player-box">
             <label for="playerName">PLAYER: </label>
-            <input type="text" id="playerName" placeholder="Type name here...">
+            <input type="text" id="playerName" placeholder="Type name...">
         </div>
     </header>
 
     <div class="bingo-grid">
         <div class="bingo-card" id="card-1">
             <div class="badge">1</div>
-            <div class="prompt-text">Has a pet 🐶🐱</div>
+            <div class="prompt-text">Has a pet 🐶</div>
             <input type="text" class="detail-input" placeholder="Pet & Owner Name">
             <label class="selfie-slot">
-                <span>+ ADD SELFIE</span>
+                <span>+ SELFIE</span>
                 <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
             </label>
         </div>
 
         <div class="bingo-card" id="card-2">
             <div class="badge">2</div>
-            <div class="prompt-text">Traveled Internationally ✈️</div>
+            <div class="prompt-text">Traveled Abroad ✈️</div>
             <input type="text" class="detail-input" placeholder="Visited Country">
-            <label class="selfie-slot">
-                <span>+ ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
-
-        <div class="bingo-card" id="card-3">
-            <div class="badge">3</div>
-            <div class="prompt-text">Watches K-Dramas 📺💖</div>
-            <input type="text" class="detail-input" placeholder="Favorite Drama Title">
-            <label class="selfie-slot">
-                <span>+ ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
-
-        <div class="bingo-card" id="card-4">
-            <div class="badge">4</div>
-            <div class="prompt-text">Likes Trying New Things 🎨🌶️</div>
-            <input type="text" class="detail-input" placeholder="Recently Tried Activity">
-            <label class="selfie-slot">
-                <span>+ ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
-
-        <div class="bingo-card" id="card-5">
-            <div class="badge">5</div>
-            <div class="prompt-text">Talks to Themselves 💭⭐</div>
-            <input type="text" class="detail-input" placeholder="Caught Talking To [Myself]">
-            <label class="selfie-slot">
-                <span>+ ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
-
-        <div class="bingo-card" id="card-6">
-            <div class="badge">6</div>
-            <div class="prompt-text">Has Gotten Lost Before 🗺️❓</div>
-            <input type="text" class="detail-input" placeholder="Got Lost In [Place]">
-            <label class="selfie-slot">
-                <span>+ ADD SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </label>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Handles reading the file dynamically and setting it into the placeholder slot
-    function handleImage(input) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            const slot = input.parentElement;
-            const card = slot.parentElement;
-
-            reader.onload = function(e) {
-                // Check if an image already exists inside this slot, if so remove it
-                const existingImg = slot.querySelector('img');
-                if (existingImg) {
-                    existingImg.remove();
-                }
-
-                // Create and insert the image asset element
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                slot.appendChild(img);
-
-                // Add "completed" class variant to give visual flare to the bingo grid card
-                card.classList.add('completed');
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
-
-</body>
-</html>
+            <label class="self
