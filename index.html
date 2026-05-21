@@ -48,6 +48,25 @@
             margin-bottom: 12px;
         }
 
+        /* New Event Styles */
+        .event-title {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #7b626e;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .event-date {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: var(--dark-pink);
+            margin: 2px 0 8px 0;
+        }
+
         h1 {
             font-family: 'Fredoka', cursive;
             color: var(--dark-pink);
@@ -61,7 +80,7 @@
             font-size: 0.85rem;
             font-weight: 700;
             color: #7b626e;
-            margin: 2px 0 6px 0;
+            margin: 4px 0 6px 0;
         }
 
         .player-box {
@@ -70,6 +89,7 @@
             border-radius: 8px;
             padding: 4px 12px;
             display: inline-block;
+            margin-top: 4px;
         }
 
         .player-box label {
@@ -110,7 +130,7 @@
             align-items: center;
             position: relative;
             box-sizing: border-box;
-            height: 175px; /* Added slight height to comfortably accommodate the native button style */
+            height: 175px; 
         }
 
         .badge {
@@ -151,7 +171,6 @@
             background-color: #fff;
         }
 
-        /* Fully styled, unblockable container button */
         .selfie-btn {
             background-color: var(--bg-color);
             border: 1.5px solid var(--dark-pink);
@@ -174,7 +193,6 @@
             color: white;
         }
 
-        /* Real preview slots that sit neatly inside the box once uploaded */
         .preview-box {
             width: 45px;
             height: 45px;
@@ -203,12 +221,21 @@
             right: 4px;
             font-size: 0.75rem;
         }
+
+        @media (max-width: 360px) {
+            .prompt-text { font-size: 0.75rem; }
+            .bingo-card { height: 150px; }
+            .selfie-btn { height: 38px; padding: 3px 4px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="bingo-container">
     <header>
+        <div class="event-title">Ladies' Fellowship</div>
+        <div class="event-date">May 22, 2026</div>
+        
         <h1>🌸 Human Selfie Bingo 🌸</h1>
         <div class="subtitle">Type details & take a selfie together!</div>
         
@@ -276,7 +303,6 @@
 </div>
 
 <script>
-    // Direct JavaScript click function—bypasses standard label tap filters completely
     function triggerUpload(id) {
         document.getElementById('file-' + id).click();
     }
@@ -294,7 +320,6 @@
                 img.src = e.target.result;
                 previewBox.appendChild(img);
                 
-                // Show thumbnail image and change card styling
                 previewBox.style.display = 'block';
                 btn.textContent = '🔄 CHANGE';
                 card.classList.add('completed');
