@@ -151,6 +151,7 @@
             background-color: #fff;
         }
 
+        /* Fixed Android Touch Wrapper Container */
         .selfie-slot {
             width: 100%;
             max-width: 60px;
@@ -161,18 +162,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
             position: relative;
             overflow: hidden;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Fixes flashing on touch */
         }
 
         .selfie-slot span {
             font-size: 0.65rem;
             color: var(--dark-pink);
             font-weight: 700;
-            pointer-events: none; /* Helps touch register on the button background */
+        }
+
+        /* Transparent, stacked input layer makes it perfectly clickable on Samsung */
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 10;
         }
 
         .selfie-slot img {
@@ -182,10 +192,7 @@
             position: absolute;
             top: 0;
             left: 0;
-        }
-
-        .file-input {
-            display: none;
+            z-index: 5;
         }
 
         .bingo-card.completed {
@@ -226,60 +233,60 @@
             <div class="badge">1</div>
             <div class="prompt-text">Has a pet 🐶</div>
             <input type="text" class="detail-input" placeholder="Name & Pet">
-            <label class="selfie-slot">
+            <div class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
-            </label>
+                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+            </div>
         </div>
 
         <div class="bingo-card" id="card-2">
             <div class="badge">2</div>
             <div class="prompt-text">Traveled Abroad ✈️</div>
             <input type="text" class="detail-input" placeholder="Where?">
-            <label class="selfie-slot">
+            <div class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
-            </label>
+                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+            </div>
         </div>
 
         <div class="bingo-card" id="card-3">
             <div class="badge">3</div>
             <div class="prompt-text">K-Dramas 📺</div>
             <input type="text" class="detail-input" placeholder="Favorite?">
-            <label class="selfie-slot">
+            <div class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
-            </label>
+                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+            </div>
         </div>
 
         <div class="bingo-card" id="card-4">
             <div class="badge">4</div>
             <div class="prompt-text">Likes New Things 🎨</div>
             <input type="text" class="detail-input" placeholder="What activity?">
-            <label class="selfie-slot">
+            <div class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
-            </label>
+                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+            </div>
         </div>
 
         <div class="bingo-card" id="card-5">
             <div class="badge">5</div>
             <div class="prompt-text">Talks to Self 💭</div>
             <input type="text" class="detail-input" placeholder="What was said?">
-            <label class="selfie-slot">
+            <div class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
-            </label>
+                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+            </div>
         </div>
 
         <div class="bingo-card" id="card-6">
             <div class="badge">6</div>
             <div class="prompt-text">Gotten Lost 🗺️</div>
             <input type="text" class="detail-input" placeholder="Where at?">
-            <label class="selfie-slot">
+            <div class="selfie-slot">
                 <span>+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" capture="user" onchange="handleImage(this)">
-            </label>
+                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
+            </div>
         </div>
     </div>
 </div>
