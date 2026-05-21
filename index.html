@@ -110,7 +110,7 @@
             align-items: center;
             position: relative;
             box-sizing: border-box;
-            height: 165px; 
+            height: 175px; /* Added slight height to comfortably accommodate the native button style */
         }
 
         .badge {
@@ -132,7 +132,7 @@
         .prompt-text {
             font-weight: 700;
             font-size: 0.8rem;
-            margin-top: 10px;
+            margin-top: 12px;
             margin-bottom: 4px;
             line-height: 1.15;
         }
@@ -151,53 +151,44 @@
             background-color: #fff;
         }
 
-        /* Standard Native Trigger Block */
-        .selfie-slot {
-            width: 100%;
-            max-width: 60px;
-            height: 48px;
+        /* Fully styled, unblockable container button */
+        .selfie-btn {
             background-color: var(--bg-color);
-            border: 1.5px dashed var(--dark-pink);
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            cursor: pointer;
-        }
-
-        /* Standard text styled nicely */
-        .upload-btn-text {
+            border: 1.5px solid var(--dark-pink);
+            border-radius: 20px;
+            padding: 5px 8px;
+            font-family: 'Quicksand', sans-serif;
             font-size: 0.65rem;
-            color: var(--dark-pink);
             font-weight: 700;
-            text-align: center;
-            display: block;
-            width: 100%;
-        }
-
-        /* Standard native button style but visually clean and fully unblocked */
-        .file-input {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            opacity: 0.01; /* Keeps it natively alive to Android touch systems */
+            color: var(--dark-pink);
             cursor: pointer;
-            display: block !important;
+            width: 85%;
+            text-align: center;
+            box-sizing: border-box;
+            box-shadow: 0 2px 4px rgba(255, 101, 163, 0.1);
+            transition: background 0.2s;
         }
 
-        .selfie-slot img {
+        .selfie-btn:active {
+            background-color: var(--primary-pink);
+            color: white;
+        }
+
+        /* Real preview slots that sit neatly inside the box once uploaded */
+        .preview-box {
+            width: 45px;
+            height: 45px;
+            border: 1px dashed var(--gold);
+            border-radius: 6px;
+            margin-top: 4px;
+            display: none;
+            overflow: hidden;
+        }
+
+        .preview-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 6px;
         }
 
         .bingo-card.completed {
@@ -211,12 +202,6 @@
             top: 4px;
             right: 4px;
             font-size: 0.75rem;
-        }
-
-        @media (max-width: 360px) {
-            .prompt-text { font-size: 0.75rem; }
-            .bingo-card { height: 150px; }
-            .selfie-slot { height: 42px; }
         }
     </style>
 </head>
@@ -238,81 +223,80 @@
             <div class="badge">1</div>
             <div class="prompt-text">Has a pet 🐶</div>
             <input type="text" class="detail-input" placeholder="Name & Pet">
-            <div class="selfie-slot">
-                <span class="upload-btn-text">+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </div>
+            <button class="selfie-btn" onclick="triggerUpload(1)">📸 +SELFIE</button>
+            <input type="file" id="file-1" accept="image/*" style="display:none;" onchange="handleImage(this, 1)">
+            <div class="preview-box" id="preview-1"></div>
         </div>
 
         <div class="bingo-card" id="card-2">
             <div class="badge">2</div>
             <div class="prompt-text">Traveled Abroad ✈️</div>
             <input type="text" class="detail-input" placeholder="Where?">
-            <div class="selfie-slot">
-                <span class="upload-btn-text">+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </div>
+            <button class="selfie-btn" onclick="triggerUpload(2)">📸 +SELFIE</button>
+            <input type="file" id="file-2" accept="image/*" style="display:none;" onchange="handleImage(this, 2)">
+            <div class="preview-box" id="preview-2"></div>
         </div>
 
         <div class="bingo-card" id="card-3">
             <div class="badge">3</div>
             <div class="prompt-text">K-Dramas 📺</div>
             <input type="text" class="detail-input" placeholder="Favorite?">
-            <div class="selfie-slot">
-                <span class="upload-btn-text">+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </div>
+            <button class="selfie-btn" onclick="triggerUpload(3)">📸 +SELFIE</button>
+            <input type="file" id="file-3" accept="image/*" style="display:none;" onchange="handleImage(this, 3)">
+            <div class="preview-box" id="preview-3"></div>
         </div>
 
         <div class="bingo-card" id="card-4">
             <div class="badge">4</div>
             <div class="prompt-text">Likes New Things 🎨</div>
             <input type="text" class="detail-input" placeholder="What activity?">
-            <div class="selfie-slot">
-                <span class="upload-btn-text">+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </div>
+            <button class="selfie-btn" onclick="triggerUpload(4)">📸 +SELFIE</button>
+            <input type="file" id="file-4" accept="image/*" style="display:none;" onchange="handleImage(this, 4)">
+            <div class="preview-box" id="preview-4"></div>
         </div>
 
         <div class="bingo-card" id="card-5">
             <div class="badge">5</div>
             <div class="prompt-text">Talks to Self 💭</div>
             <input type="text" class="detail-input" placeholder="What was said?">
-            <div class="selfie-slot">
-                <span class="upload-btn-text">+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </div>
+            <button class="selfie-btn" onclick="triggerUpload(5)">📸 +SELFIE</button>
+            <input type="file" id="file-5" accept="image/*" style="display:none;" onchange="handleImage(this, 5)">
+            <div class="preview-box" id="preview-5"></div>
         </div>
 
         <div class="bingo-card" id="card-6">
             <div class="badge">6</div>
             <div class="prompt-text">Gotten Lost 🗺️</div>
             <input type="text" class="detail-input" placeholder="Where at?">
-            <div class="selfie-slot">
-                <span class="upload-btn-text">+ SELFIE</span>
-                <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
-            </div>
+            <button class="selfie-btn" onclick="triggerUpload(6)">📸 +SELFIE</button>
+            <input type="file" id="file-6" accept="image/*" style="display:none;" onchange="handleImage(this, 6)">
+            <div class="preview-box" id="preview-6"></div>
         </div>
     </div>
 </div>
 
 <script>
-    function handleImage(input) {
+    // Direct JavaScript click function—bypasses standard label tap filters completely
+    function triggerUpload(id) {
+        document.getElementById('file-' + id).click();
+    }
+
+    function handleImage(input, id) {
         if (input.files && input.files[0]) {
             const reader = new FileReader();
-            const slot = input.parentElement;
-            const card = slot.parentElement;
+            const previewBox = document.getElementById('preview-' + id);
+            const card = document.getElementById('card-' + id);
+            const btn = card.querySelector('.selfie-btn');
 
             reader.onload = function(e) {
-                const existingImg = slot.querySelector('img');
-                if (existingImg) {
-                    existingImg.remove();
-                }
-
+                previewBox.innerHTML = '';
                 const img = document.createElement('img');
                 img.src = e.target.result;
-                slot.appendChild(img);
-
+                previewBox.appendChild(img);
+                
+                // Show thumbnail image and change card styling
+                previewBox.style.display = 'block';
+                btn.textContent = '🔄 CHANGE';
                 card.classList.add('completed');
             }
 
