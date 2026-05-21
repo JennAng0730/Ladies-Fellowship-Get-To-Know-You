@@ -151,38 +151,43 @@
             background-color: #fff;
         }
 
-        /* Fixed Android Touch Wrapper Container */
+        /* Standard Native Trigger Block */
         .selfie-slot {
             width: 100%;
             max-width: 60px;
             height: 48px;
-            border: 1.5px dashed var(--primary-pink);
-            border-radius: 8px;
             background-color: var(--bg-color);
+            border: 1.5px dashed var(--dark-pink);
+            border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            overflow: hidden;
-            box-sizing: border-box;
+            cursor: pointer;
         }
 
-        .selfie-slot span {
+        /* Standard text styled nicely */
+        .upload-btn-text {
             font-size: 0.65rem;
             color: var(--dark-pink);
             font-weight: 700;
+            text-align: center;
+            display: block;
+            width: 100%;
         }
 
-        /* Transparent, stacked input layer makes it perfectly clickable on Samsung */
+        /* Standard native button style but visually clean and fully unblocked */
         .file-input {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0;
+            margin: 0;
+            padding: 0;
+            opacity: 0.01; /* Keeps it natively alive to Android touch systems */
             cursor: pointer;
-            z-index: 10;
+            display: block !important;
         }
 
         .selfie-slot img {
@@ -192,7 +197,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 5;
+            border-radius: 6px;
         }
 
         .bingo-card.completed {
@@ -234,7 +239,7 @@
             <div class="prompt-text">Has a pet 🐶</div>
             <input type="text" class="detail-input" placeholder="Name & Pet">
             <div class="selfie-slot">
-                <span>+ SELFIE</span>
+                <span class="upload-btn-text">+ SELFIE</span>
                 <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
             </div>
         </div>
@@ -244,7 +249,7 @@
             <div class="prompt-text">Traveled Abroad ✈️</div>
             <input type="text" class="detail-input" placeholder="Where?">
             <div class="selfie-slot">
-                <span>+ SELFIE</span>
+                <span class="upload-btn-text">+ SELFIE</span>
                 <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
             </div>
         </div>
@@ -254,7 +259,7 @@
             <div class="prompt-text">K-Dramas 📺</div>
             <input type="text" class="detail-input" placeholder="Favorite?">
             <div class="selfie-slot">
-                <span>+ SELFIE</span>
+                <span class="upload-btn-text">+ SELFIE</span>
                 <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
             </div>
         </div>
@@ -264,7 +269,7 @@
             <div class="prompt-text">Likes New Things 🎨</div>
             <input type="text" class="detail-input" placeholder="What activity?">
             <div class="selfie-slot">
-                <span>+ SELFIE</span>
+                <span class="upload-btn-text">+ SELFIE</span>
                 <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
             </div>
         </div>
@@ -274,7 +279,7 @@
             <div class="prompt-text">Talks to Self 💭</div>
             <input type="text" class="detail-input" placeholder="What was said?">
             <div class="selfie-slot">
-                <span>+ SELFIE</span>
+                <span class="upload-btn-text">+ SELFIE</span>
                 <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
             </div>
         </div>
@@ -284,7 +289,7 @@
             <div class="prompt-text">Gotten Lost 🗺️</div>
             <input type="text" class="detail-input" placeholder="Where at?">
             <div class="selfie-slot">
-                <span>+ SELFIE</span>
+                <span class="upload-btn-text">+ SELFIE</span>
                 <input type="file" class="file-input" accept="image/*" onchange="handleImage(this)">
             </div>
         </div>
